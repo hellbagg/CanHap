@@ -278,6 +278,11 @@ public void ResetIntegrator(int theValue) {
 }
 public void ResetDevice(int theValue) {
     widgetOne.device_set_parameters();
+    P = 0;
+    I = 0;
+    D = 0;
+    widgetOne.set_device_torques(new float[]{0, 0});
+    widgetOne.device_write_torques();
 
 }
 
@@ -420,12 +425,12 @@ while(1==1) {
 //Loop to trace and move to next target point 
 
     if(abs(dist_X) < 40 && abs(dist_Y) < 40){
-      xr += 0.01;
+      xr += 0.0005;
     }
     
     if (abs(dist_X) < 40 && abs(dist_Y) < 40 && xr >= (savexr + 0.5)){
        xr = savexr + 0.5;
-       yr += 0.01;
+       yr += 0.0005;
      }
       
       //println("savexr: " + savexr + " " + "saveyr: " + saveyr);
